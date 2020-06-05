@@ -6,6 +6,12 @@ const os = osu.os;
 
 const cpuOverload = 80;
 
+notifyUser({
+  title: 'CPU Overload',
+  body: `CPU is over ${cpuOverload}%`,
+  icon: path.join(__dirname, 'img', 'icon.png'),
+});
+
 // Run every 2 seconds
 setInterval(() => {
   // CPU Usage
@@ -53,4 +59,9 @@ function secondsToDhms(seconds) {
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
   return `${d}d, ${h}h, ${m}m, ${s}s`;
+}
+
+// Send notification
+function notifyUser(options) {
+  new Notification(options.title, options);
 }
